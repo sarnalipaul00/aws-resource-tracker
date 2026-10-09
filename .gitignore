@@ -1,0 +1,12 @@
+# Generated output may contain account inventory or IAM usernames.
+reports/
+logs/
+*.log
+
+# Never commit local secrets or AWS configuration.
+.env
+.aws/
+credentials
+config
+resourceTracker
+aws-resource-tracker-starter.sh
