@@ -46,7 +46,7 @@ The script needs permission to list S3 buckets, describe EC2 instances, list Lam
 Open Ubuntu/WSL and go to the project folder. Use your actual folder path if it is different:
 
 ```bash
-cd /mnt/c/Users/MANOSI/Documents/Codex/aws-resource-tracker
+cd /path/to/aws-resource-tracker
 bash aws-resource-tracker.sh
 ```
 
@@ -68,10 +68,10 @@ Open your schedule:
 crontab -e
 ```
 
-For example, this runs every day at 12:30 UTC:
+For example, this runs every day at 12:30 according to the Linux machine's timezone. Replace `/home/your-user/aws-resource-tracker` with the full path to your project folder:
 
 ```cron
-30 12 * * * cd /mnt/c/Users/MANOSI/Documents/Codex/aws-resource-tracker && PATH=/home/manosi/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin bash ./aws-resource-tracker.sh >> /mnt/c/Users/MANOSI/Documents/Codex/aws-resource-tracker/cron.log 2>&1
+30 12 * * * cd /home/your-user/aws-resource-tracker && PATH=/home/your-user/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin bash ./aws-resource-tracker.sh >> /home/your-user/aws-resource-tracker/cron.log 2>&1
 ```
 
 The five time fields are minute, hour, day of month, month, and day of week. `30 12 * * *` means minute 30, hour 12, every day. Cron uses the Linux machine's timezone; check it with `date`. In WSL, Cron can only run while the WSL environment is running.
@@ -85,7 +85,7 @@ crontab -l
 AWS sign-in sessions can expire. If the script works manually but Cron later reports an authentication error, sign in again using the AWS CLI method configured for your account, then inspect the log:
 
 ```bash
-tail -n 30 /mnt/c/Users/MANOSI/Documents/Codex/aws-resource-tracker/cron.log
+tail -n 30 /home/your-user/aws-resource-tracker/cron.log
 ```
 
 ## Troubleshooting
